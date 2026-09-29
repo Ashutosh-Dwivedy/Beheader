@@ -8,5 +8,5 @@ chmod +x beheader.py
 
 Usage:
 ```
-./beheader.py -u <URL TO BE SCANNED>
+./beheader.py -u/--url <URL TO BE SCANNED>
 ```
