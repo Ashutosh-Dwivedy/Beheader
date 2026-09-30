@@ -45,7 +45,7 @@ data_XCTO = {}
 data_RP = {}
 
 
-response = requests.get(url)
+response = requests.head(url)
 headers = response.headers
 
 def data(flag, head, value):
