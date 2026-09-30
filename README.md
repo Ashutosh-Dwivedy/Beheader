@@ -1,7 +1,8 @@
 # Beheader
 A python-based CLI tool that parses HTTP headers to detect the prescence/abscense od security headers(currently tests for 4 security headers)
 
-Currently the tool tests for the following headers and their flags:
+Currently the tool tests for the following headers and their flags:<br />
+
 **1) Strict-Transport-Security**
 - max-age(parses output to find max-age)
 - includeSubdomains
