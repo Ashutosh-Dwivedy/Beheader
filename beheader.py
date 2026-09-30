@@ -34,7 +34,7 @@ HEADERS = (
 )
 
 
-STS = ["max-age", "includeSubdomains", "preload"]
+STS = ["max-age", "includesubdomains", "preload"]
 XFS = ["deny", "sameorigin"]
 RP = ["no-referrer", "same-origin", "strict-origin-when-cross-origin", "origin-when-cross-origin", "no-referrer-when-downgrade", "origin", "strict-origin", "unsafe-url"]
 XCTO = ["nosniff"]
@@ -64,8 +64,11 @@ def header_check():
             present.append(header)
 
 def flag_check():
-        for header in present:
+        for header in HEADERS:
                 if header == "Content-Security-Policy":
+                        continue
+                if header not in present:
+                        data(header, header, "Header Absent")
                         continue
                 for flag in STS if header == "Strict-Transport-Security" else XFS if header == "X-Frame-Options" else RP if header == "Referrer-Policy" else XCTO:
                         if flag == "max-age":
@@ -76,7 +79,7 @@ def flag_check():
                                         elif "max-age" not in headers[header] and header == "Strict-Transport-Security":
                                                 data("max-age", header, "absent")
                                         continue
-                        if flag.lower() in headers[header] and flag != "max-age":
+                        if flag.lower() in headers[header].lower() and flag != "max-age":
                                         data(flag, header, "present")
                         else:
                                         data(flag, header, "absent")
